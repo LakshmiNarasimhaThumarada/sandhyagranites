@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --charcoal: #1C1C1C;
+  --surface: #2A2A2A;
+  --teal: #3AACB0;
+  --cream: #E8E0CC;
+  --white: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--charcoal);
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--charcoal);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--teal);
+  border-radius: 3px;
+}
+
+/* Clip path for CTA button */
+.clip-cta {
+  clip-path: polygon(0 0, 95% 0, 100% 40%, 100% 100%, 5% 100%, 0% 60%);
+}
+
+/* Outline text */
+.text-outline {
+  -webkit-text-stroke: 1.5px #ffffff;
+  color: transparent;
+}
+
+@media (max-width: 768px) {
+  .text-outline {
+    -webkit-text-stroke: 1px #ffffff;
+  }
+}
+
+/* Progress bar animation */
+@keyframes progressFill {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+.progress-fill {
+  animation: progressFill 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Scroll indicator pulse */
+@keyframes scrollPulse {
+  0%, 100% { height: 20px; opacity: 0.4; }
+  50% { height: 40px; opacity: 1; }
+}
+
+.scroll-pulse {
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+/* Ken Burns hover effect */
+.ken-burns-container img {
+  transition: transform 6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.ken-burns-container:hover img {
+  transform: scale(1.15);
+}
+
+/* Diagonal decorative lines */
+.diagonal-line {
+  position: absolute;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(58, 172, 176, 0.08), transparent);
+  transform-origin: top;
+}
