@@ -27,9 +27,9 @@ const Logo = ({ className = "" }: { className?: string }) => (
    GRANITE IMAGE DATA
    ───────────────────────────────────────────── */
 const graniteImages = [
-  { src: "/viscon_white.jpeg", name: "Viscon White", alt: "Viscon White" },
-  { src: "/black1.jpeg", name: "Black Galaxy", alt: "Black Galaxy" },
-  { src: "/brown1.jpeg", name: "Aadhoni Brown", alt: "Aadhoni Brown" },
+  { src: "/viscon_white.png", name: "Viscon White", alt: "Viscon White" },
+  { src: "/black1.png", name: "Black Galaxy", alt: "Black Galaxy" },
+  { src: "/brown1.png", name: "Aadhoni Brown", alt: "Aadhoni Brown" },
 ];
 
 /* ─────────────────────────────────────────────
@@ -277,18 +277,13 @@ const Hero = ({ visible }: { visible: boolean }) => {
                   src={img.src}
                   alt={img.alt}
                   fill
-                  className="object-cover transition-transform duration-[2000ms] group-hover:scale-105"
+                  className="object-cover transition-transform duration-[2000ms] group-hover:scale-105 border border-white/20"
                 />
                 {/* Lighter overlay to highlight more */}
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all duration-700" />
 
-                {/* Accent bar on right edge */}
-                <div
-                  className="absolute top-0 right-0 w-[3px] h-full"
-                  style={{
-                    background: `linear-gradient(180deg, #3AACB0, #2A2A2A, #1C1C1C)`,
-                  }}
-                />
+                {/* 4-side sharp border overlay */}
+                <div className="absolute inset-0 border border-white/30 pointer-events-none z-10" />
 
                 {/* Label */}
                 <div className="absolute bottom-4 left-5 z-10">
@@ -413,15 +408,10 @@ export default function Home() {
       {/* When loading is false and showMain is true, the rest of the site is displayed instantly */}
       <Navbar visible={showMain} />
 
-      {/* Fixed Hero Background for Overlapping Scroll */}
-      <div className="fixed top-0 left-0 w-full h-screen z-0">
-        <Hero visible={showMain} />
-      </div>
+      {/* Hero Section - Changed from fixed to relative to prevent overlap issues on mobile */}
+      <Hero visible={showMain} />
 
-      {/* Spacer to allow scrolling past the fixed Hero */}
-      <div className="w-full h-screen pointer-events-none" />
-
-      {/* Content that scrolls over the Hero */}
+      {/* Content that scrolls after the Hero */}
       <div className="relative z-10 bg-[#1C1C1C]">
         <VideoFullscreen visible={showMain} />
         <Footer />
