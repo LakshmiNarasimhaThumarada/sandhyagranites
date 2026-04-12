@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -12,105 +13,88 @@ import Footer from "@/components/Footer";
 const blogPosts = [
   {
     id: 1,
-    video: "/blog-videos/blog-1.mp4",
-    category: "Stone Guide",
-    title: "Black Galaxy Granite: Nature's Starfield in Stone",
+    image: "/blog_1.png",
+    category: "Process",
+    title: "The Art of Extraction: Sourcing World-Class Granite",
     date: "March 2024",
     duration: "4 min read",
     excerpt:
-      "Black Galaxy Granite, quarried exclusively from the Star Galaxy mines of Nellore, Andhra Pradesh, is one of India's most sought-after natural stones. Its deep midnight-black base is spectacularly adorned with golden bronze and copper-toned flecks — formed from natural bronzite mineral inclusions — creating a surface that seems to glitter like a galaxy.",
+      "Every masterpiece begins at the source. Our journey starts deep within the earth, where advanced quarrying technology meets decades of expertise. Using automated machinery, we extract massive, high-quality granite blocks with surgical precision, ensuring the natural integrity of the stone is preserved from the very first cut.",
     bullets: [
-      "Origin: Nellore, Andhra Pradesh, India",
-      "Hardness: 6–7 on the Mohs scale",
-      "Best for: Kitchen countertops, accent walls, luxury flooring",
-      "Finish: High polish brings out maximum sparkle",
+      "Precision block extraction using diamond saws",
+      "Rigorous on-site selection criteria",
+      "Sustainable quarry management practices",
+      "Capacity for large-scale architectural projects",
     ],
-    tag: "Trending",
+    tag: "Extraction",
   },
   {
     id: 2,
-    video: "/blog-videos/blog-2.mp4",
-    category: "Interior Design",
-    title: "Kashmir White Granite: Timeless Elegance for Modern Spaces",
+    image: "/blog_2.png",
+    category: "Manufacturing",
+    title: "Precision Slicing: Turning Blocks into Masterpieces",
     date: "February 2024",
     duration: "5 min read",
     excerpt:
-      "Kashmir White Granite originates from the quarries of Tamil Nadu and is renowned for its creamy white background interlaced with fine grey veining and deep burgundy garnet crystals. It effortlessly bridges classic and contemporary design, making it one of the most universally loved granites worldwide.",
+      "Once a block enters our facility, the transformation begins. Our state-of-the-art gang saws and circular cutting machines slice through solid granite like butter. This critical stage demands absolute accuracy to achieve perfectly uniform thickness across every slab, laying the foundation for a flawless finish in your space.",
     bullets: [
-      "Origin: Tamil Nadu, India",
-      "Pattern: White base with grey veins and garnet spots",
-      "Best for: Bathroom counters, island tops, wall cladding",
-      "Durability: Highly resistant to heat and scratch",
+      "Multi-wire technology for uniform thickness",
+      "Laser-guided cutting precision",
+      "Optimized block yields to minimize waste",
+      "Handling blocks up to 30 tons",
     ],
-    tag: "Popular",
+    tag: "Machinery",
   },
   {
     id: 3,
-    video: "/blog-videos/blog-3.mp4",
-    category: "Architecture",
-    title: "Granite in Commercial Architecture: Case Studies",
+    image: "/blog_3.png",
+    category: "Technology",
+    title: "High-Velocity Cutting: The Power of Diamond Saws",
     date: "January 2024",
     duration: "6 min read",
     excerpt:
-      "From soaring hotel lobbies to sprawling airport terminals, natural granite has long been the material of choice for high-traffic commercial architecture. Its unparalleled compressive strength, resistance to wear, and ability to maintain a polished finish for decades make it the definitive choice when longevity is non-negotiable.",
+      "The roar of the diamond saw is the pulse of our factory. Operating at incredible speeds with water-cooled lubrication, these saws create the precise edges and intricate shapes required for custom designs. This marriage of raw power and technological finesse ensures that even the hardest granites are shaped with stunning detail.",
     bullets: [
-      "Compressive strength: 150–300 MPa",
-      "Slip resistance: R9–R11 ratings available",
-      "Maintenance: Low — routine sealing every 1–2 years",
-      "Lifespan: 100+ years with minimal maintenance",
+      "Industrial-grade diamond-tipped blades",
+      "Continuous cooling systems for surface integrity",
+      "Digital controls for intricate shape cutting",
+      "Reduced vibration for cleaner edges",
     ],
-    tag: "Featured",
+    tag: "Precision",
   },
   {
     id: 4,
-    video: "/blog-videos/blog-4.mp4",
-    category: "Process",
-    title: "From Quarry to Counter: The Journey of a Granite Slab",
+    image: "/blog_4.png",
+    category: "Refining",
+    title: "Surface Perfection: The Polishing & Finishing Process",
     date: "December 2023",
     duration: "5 min read",
     excerpt:
-      "The journey of a granite slab from the earth to your kitchen counter is a story of precision, craftsmanship, and technology. It begins deep in open-pit quarries where diamond wire saws slice massive blocks from the bedrock. These rough blocks — each weighing up to 30 tonnes — are then transported to processing facilities where they are transformed into the gleaming slabs you see in showrooms.",
+      "A granite slab truly comes alive during the polishing phase. Our multi-head automated polishers use a series of abrasive pads to bring out the natural depth, color, and luster of the stone. From high-gloss mirror finishes to contemporary leathered textures, we refine every surface to meet international quality standards.",
     bullets: [
-      "Step 1: Extraction with diamond wire saws",
-      "Step 2: Block transport to processing plant",
-      "Step 3: Gang saw slicing into rough slabs",
-      "Step 4: Grinding, polishing, and quality inspection",
+      "24-head automated polishing lines",
+      "Consistency in gloss levels across slabs",
+      "Custom finishes: Honed, Leathered, Flamed",
+      "Water recycling systems for eco-friendly refining",
     ],
-    tag: "Education",
+    tag: "Finishing",
   },
   {
     id: 5,
-    video: "/blog-videos/blog-5.mp4",
-    category: "Trends",
-    title: "2024 Granite Trends: Bold Patterns, Dark Stones & Leathered Finishes",
+    image: "/blog_5.png",
+    category: "Quality Control",
+    title: "Final Inspection: Ensuring Excellence in Every Slab",
     date: "November 2023",
     duration: "4 min read",
     excerpt:
-      "The design world is moving boldly in 2024. Where neutral whites and greys dominated the previous decade, today's architects and homeowners are reaching for dramatic dark granites, bold movement patterns, and tactile leathered finishes. The leathered finish — a matte, slightly textured surface — is rapidly becoming the designer's preferred choice over traditional high-gloss polishing.",
+      "Before any slab leaves our facility, it must pass a rigorous quality audit. Our technicians inspect each piece for color consistency, structural integrity, and surface perfection. This final step guarantees that only the finest 'Sandhya' grade granite reaches our global partners and discerning homeowners.",
     bullets: [
-      "Trend 1: Leathered & brushed matte finishes",
-      "Trend 2: Waterfall edges for kitchen islands",
-      "Trend 3: Dark granites — Absolute Black, Blue Pearl",
-      "Trend 4: Large-format slabs with minimal seams",
+      "Individual slab grading and mapping",
+      "Color matching for consistent project batches",
+      "Structural density and stress testing",
+      "Secure packaging for damage-free transit",
     ],
-    tag: "Trends 2024",
-  },
-  {
-    id: 6,
-    video: "/blog-videos/blog-6.mp4",
-    category: "Maintenance",
-    title: "Caring for Your Granite: The Complete Maintenance Guide",
-    date: "October 2023",
-    duration: "3 min read",
-    excerpt:
-      "Natural granite is incredibly durable, but a little care goes a long way in preserving its beauty for generations. Proper sealing, cleaning with pH-neutral products, and avoiding harsh chemicals are the three pillars of granite maintenance. A well-maintained granite surface will look as good in 50 years as it did on the day it was installed.",
-    bullets: [
-      "Seal every 12–18 months with penetrating sealer",
-      "Clean with mild soap and warm water only",
-      "Avoid acidic cleaners — vinegar, lemon, bleach",
-      "Use trivets under hot pots (though granite is heat resistant)",
-    ],
-    tag: "Tips",
+    tag: "Excellence",
   },
 ];
 
@@ -161,15 +145,13 @@ function BlogEntry({
                 {post.tag}
               </span>
             </div>
-            {/* Video */}
+            {/* Video replaced with Image */}
             <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl shadow-black/60 border border-white/5 aspect-video">
-              <video
-                src={post.video}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
+              <Image
+                src={post.image}
+                alt={post.title}
+                fill
+                className="object-cover"
                 style={{ filter: "brightness(0.9)" }}
               />
               {/* Subtle overlay */}
@@ -266,9 +248,9 @@ export default function BlogPage() {
             {/* Stats bar */}
             <div className="flex flex-wrap gap-6 sm:gap-8 mt-8 pt-6 border-t border-white/5">
               {[
-                { value: "6", label: "Stories" },
-                { value: "10+", label: "Years of Knowledge" },
-                { value: "500+", label: "Stone Varieties" },
+                { value: "5", label: "Stories" },
+                { value: "Precision", label: "Machinery" },
+                { value: "24/7", label: "Operations" },
               ].map(({ value, label }) => (
                 <div key={label} className="flex flex-col gap-1">
                   <span className="font-cinzel text-xl sm:text-2xl text-white">{value}</span>

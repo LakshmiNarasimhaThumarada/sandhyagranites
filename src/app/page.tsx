@@ -241,14 +241,12 @@ const Hero = ({ visible }: { visible: boolean }) => {
           </p>
 
           <div className="flex flex-wrap items-center gap-4 mb-4 md:mb-6 mt-4">
-            <motion.a
-              href="#about-us"
+            <Link
+              href="/blogs"
               className="clip-cta inline-block bg-teal px-6 sm:px-8 py-3 sm:py-3.5 font-raleway text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-charcoal hover:bg-teal/90 transition-colors duration-300"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
             >
-              Explore Collections
-            </motion.a>
+              Visit Blogs
+            </Link>
           </div>
 
           {/* Stats section removed as requested */}
@@ -331,50 +329,53 @@ const Hero = ({ visible }: { visible: boolean }) => {
    FULLSCREEN VIDEO SECTION
    ───────────────────────────────────────────── */
 const VideoFullscreen = ({ visible }: { visible: boolean }) => {
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-
-  const videos = [
-    "/videos/Vid_1.MP4",
-    "/videos/Vid_2.MP4",
-    "/videos/VId_3.MP4"
+  const images = [
+    "/landing_1.png",
+    "/landing_2.png",
+    "/landing_3.png",
+    "/landing_4.png",
+    "/landing_1.png", // Duplicate first for seamless loop
   ];
 
   return (
     <motion.section
-      className="relative w-full h-[60vh] md:h-screen overflow-hidden bg-black"
+      className="relative w-full h-[40vh] md:h-[60vh] overflow-hidden bg-black flex items-center"
       initial={{ opacity: 0 }}
       animate={visible ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 1, delay: 0.5 }}
     >
-      <AnimatePresence>
-        <motion.video
-          key={currentVideoIndex}
-          src={videos[currentVideoIndex]}
-          autoPlay
-          muted
-          playsInline
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
-          onEnded={() => {
-            setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
-          }}
-          onLoadedData={(e: any) => {
-            if (currentVideoIndex === 0) {
-              e.currentTarget.playbackRate = 2.5;
-            } else {
-              e.currentTarget.playbackRate = 1.0;
-            }
-          }}
-          className="absolute top-0 left-0 w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700"
-        />
-      </AnimatePresence>
+      <motion.div
+        className="flex h-full"
+        animate={{
+          x: [0, "-100%"]
+        }}
+        transition={{
+          duration: 30,
+          ease: "linear",
+          repeat: Infinity,
+        }}
+        style={{ width: `${images.length * 100}%` }}
+      >
+        {images.map((src, idx) => (
+          <div key={idx} className="relative h-full w-[85vw] md:w-[60vw] flex-shrink-0 border-x border-white/10 group overflow-hidden">
+            <Image
+              src={src}
+              alt={`Landing View ${idx + 1}`}
+              fill
+              className="object-cover transition-transform duration-[3000ms] group-hover:scale-105"
+              priority={idx < 2}
+            />
+            {/* Added sharp border overlay */}
+            <div className="absolute inset-4 border border-white/20 pointer-events-none z-10" />
+            <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-700" />
+          </div>
+        ))}
+      </motion.div>
 
       {/* Overlay to blend with adjacent sections */}
       <div className="absolute inset-0 bg-black/10 pointer-events-none" />
-      <div className="absolute inset-x-0 top-0 h-24 md:h-32 bg-gradient-to-b from-[#1C1C1C] to-transparent pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-24 md:h-32 bg-gradient-to-t from-[#1C1C1C] to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-16 md:h-24 bg-gradient-to-b from-[#1C1C1C] to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-16 md:h-24 bg-gradient-to-t from-[#1C1C1C] to-transparent pointer-events-none" />
     </motion.section>
   );
 };
