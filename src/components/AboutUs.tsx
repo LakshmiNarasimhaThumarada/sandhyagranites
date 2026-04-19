@@ -81,8 +81,42 @@ export default function AboutUs() {
     <section id="about-us" className="relative bg-[#1C1C1C] overflow-hidden">
 
       {/* ══════════════════════════════════════
-          SECTION 1 · Heritage Introduction
+          HERO BANNER (reference style)
       ═══════════════════════════════════════ */}
+      <div className="relative w-full h-[260px] sm:h-[340px] md:h-[420px] overflow-hidden">
+        {/* Background image */}
+        <Image
+          src="/blogs_1.png"
+          alt="About Sandhya Granites"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+          priority
+        />
+        {/* Dark gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1C1C1C]/90 via-[#1C1C1C]/60 to-[#1C1C1C]/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1C] via-transparent to-[#1C1C1C]/40" />
+
+        {/* About Us text */}
+        <div className="absolute inset-0 flex items-center">
+          <div className="max-w-[1400px] mx-auto w-full px-6 md:px-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <span className="block w-8 h-[1px] bg-teal" />
+                <span className="font-raleway text-[10px] sm:text-xs uppercase tracking-[0.3em] text-teal font-medium">Our Story</span>
+              </div>
+              <h1 className="font-cinzel text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium text-white leading-none">
+                About Us
+              </h1>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
       <div className="relative py-16 sm:py-24 md:py-32">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-teal/5 blur-[100px] pointer-events-none" />
 
@@ -101,7 +135,7 @@ export default function AboutUs() {
                 Stone Surfaces
               </h2>
               <p className="font-raleway text-sm md:text-base text-cream/70 font-light leading-relaxed mb-4">
-                With over <span className="text-white font-medium">15 years of deep-rooted expertise</span>, Sandhya Granites has been at the forefront of the natural stone industry. We source the most exquisite materials directly from premier quarries, ensuring every slab we deliver is a masterpiece of nature.
+                With over <span className="text-white font-medium">10 years of deep-rooted expertise</span>, Sandhya Granites has been at the forefront of the natural stone industry. We source the most exquisite materials directly from premier quarries, ensuring every slab we deliver is a masterpiece of nature.
               </p>
               <p className="font-raleway text-sm md:text-base text-cream/70 font-light leading-relaxed mb-8">
                 From raw quarry blocks to impeccably polished surfaces, our state-of-the-art processing technology brings out the distinct character, depth, and vibrant colours innate to each stone. Our zero-compromise quality control ensures absolute consistency in every batch.
@@ -109,7 +143,7 @@ export default function AboutUs() {
 
               {/* Stats row */}
               <div className="flex flex-wrap gap-6 sm:gap-8 pt-5 border-t border-white/5">
-                <Stat value="15+" label="Years Experience" />
+                <Stat value="10+" label="Years Experience" />
                 <div className="hidden sm:block w-[1px] h-12 bg-white/10" />
                 <Stat value="5000+" label="Happy Customers" />
                 <div className="hidden sm:block w-[1px] h-12 bg-white/10" />
@@ -208,9 +242,9 @@ export default function AboutUs() {
               <div className="flex flex-wrap gap-6 sm:gap-8 pt-5 border-t border-white/5">
                 <Stat value="7-Step" label="Quality Check" />
                 <div className="hidden sm:block w-[1px] h-12 bg-white/10" />
-                <Stat value="CNC" label="Precision Cutting" />
+                <Stat value="IEC" label="Certified" />
                 <div className="hidden sm:block w-[1px] h-12 bg-white/10" />
-                <Stat value="ISO" label="Certified Plant" />
+                <Stat value="FIEO" label="Certificates" />
               </div>
             </motion.div>
           </div>

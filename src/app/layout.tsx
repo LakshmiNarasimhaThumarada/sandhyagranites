@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cinzel, Raleway } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -45,6 +46,7 @@ export default function RootLayout({
     <html lang="en" className={`${cinzel.variable} ${raleway.variable}`}>
       <body suppressHydrationWarning className="font-raleway antialiased bg-[#1C1C1C] text-cream">
         <SmoothScroll>{children}</SmoothScroll>
+        <WhatsAppButton />
       </body>
     </html>
   );

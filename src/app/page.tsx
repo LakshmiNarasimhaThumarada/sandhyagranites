@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import AboutUs from "@/components/AboutUs";
+
 
 /* ─────────────────────────────────────────────
    LOGO COMPONENT
@@ -20,8 +21,6 @@ const Logo = ({ className = "" }: { className?: string }) => (
     priority
   />
 );
-
-// StatItem and useCountUp hook removed
 
 /* ─────────────────────────────────────────────
    GRANITE IMAGE DATA
@@ -69,6 +68,7 @@ const GeometricDecorations = () => (
    NAV LINKS
    ───────────────────────────────────────────── */
 const navLinks = ["Home", "About Us", "Blogs"];
+
 
 /* ─────────────────────────────────────────────
    PAGE LOADER
@@ -326,56 +326,201 @@ const Hero = ({ visible }: { visible: boolean }) => {
 };
 
 /* ─────────────────────────────────────────────
-   FULLSCREEN VIDEO SECTION
+   WHO WE SERVE SECTION
    ───────────────────────────────────────────── */
-const VideoFullscreen = ({ visible }: { visible: boolean }) => {
-  const images = [
-    "/landing_1.png",
-    "/landing_2.png",
-    "/landing_3.png",
-    "/landing_4.png",
-    "/landing_1.png", // Duplicate first for seamless loop
+const WhoWeServe = () => {
+  const cards = [
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 text-teal">
+          <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" />
+          <path d="M9 21V12h6v9" />
+        </svg>
+      ),
+      title: "Individual Customers",
+      desc: "Whether you are building your dream home or renovating your kitchen, we supply premium-grade granite slabs tailored for individual residential projects — with personal guidance every step of the way.",
+      accent: "border-white/10",
+      bg: "bg-white/3",
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 text-teal">
+          <path d="M3 9h18l-1.5 9H4.5L3 9z" />
+          <path d="M3 9l1.5-4.5h15L21 9" />
+          <path d="M9 12v3M12 12v3M15 12v3" />
+        </svg>
+      ),
+      title: "Granite Shops & Dealers",
+      desc: "We are the trusted wholesale partner for granite retailers and showrooms across India. Consistent quality, competitive pricing, and reliable stock ensure your business never misses a beat.",
+      accent: "border-white/10",
+      bg: "bg-white/3",
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 text-teal">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M2 12h20" />
+          <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z" />
+        </svg>
+      ),
+      title: "International Export",
+      desc: "Sandhya Granites proudly exports to clients across the Middle East, Europe, and Southeast Asia. Our granite crosses borders carrying the same promise — unmatched quality from quarry to destination.",
+      accent: "border-teal/30",
+      bg: "bg-teal/5",
+      highlight: true,
+    },
   ];
 
   return (
+    <section className="relative bg-[#1C1C1C] py-20 md:py-28 overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] rounded-full bg-teal/4 blur-[120px] pointer-events-none" />
+
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7 }}
+          className="mb-12 md:mb-16"
+        >
+          <div className="flex items-center gap-4 mb-5">
+            <span className="block w-8 h-[1px] bg-teal" />
+            <span className="font-raleway text-[10px] sm:text-xs uppercase tracking-[0.3em] text-teal font-medium">
+              Serving Every Need
+            </span>
+          </div>
+          <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-medium text-white leading-tight">
+            Who We <span className="italic font-light text-teal">Supply</span>
+          </h2>
+          <p className="mt-4 font-raleway text-sm md:text-base text-white/50 font-light max-w-xl leading-relaxed">
+            From the first-time homeowner to the global distributor — our granite finds its place in every project, big or small.
+          </p>
+        </motion.div>
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          {cards.map((card, i) => (
+            <motion.div
+              key={card.title}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
+              className={`relative p-7 border ${card.accent} ${card.bg} flex flex-col gap-4 group overflow-hidden`}
+            >
+              {/* Top-right glow for export card */}
+              {card.highlight && (
+                <div className="absolute top-0 right-0 w-32 h-32 bg-teal/10 blur-[60px] pointer-events-none" />
+              )}
+              {/* Animated dot for export */}
+              {card.highlight && (
+                <div className="absolute top-4 right-4 flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse" />
+                  <span className="font-raleway text-[9px] uppercase tracking-[0.25em] text-teal">Exporting Globally</span>
+                </div>
+              )}
+
+              <div className="w-12 h-12 flex items-center justify-center border border-white/10 bg-white/5 shrink-0">
+                {card.icon}
+              </div>
+              <h3 className="font-cinzel text-white text-xl font-medium leading-snug">{card.title}</h3>
+              <p className="font-raleway text-sm text-white/55 leading-relaxed">{card.desc}</p>
+
+              {/* Bottom teal line on hover */}
+              <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-teal scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Export highlight banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 p-5 md:p-7 border border-teal/20 bg-teal/5"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 flex items-center justify-center border border-teal/40 shrink-0">
+              <span className="text-teal text-lg">✈</span>
+            </div>
+            <div>
+              <p className="font-cinzel text-white text-base md:text-lg font-medium">Granite Export — Trusted Worldwide</p>
+              <p className="font-raleway text-xs text-white/45 mt-0.5">Middle East · Europe · Southeast Asia · and beyond</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 shrink-0">
+            <div className="h-[1px] w-8 bg-teal/40" />
+            <span className="font-raleway text-[10px] uppercase tracking-[0.25em] text-teal">International Shipping Available</span>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+/* ─────────────────────────────────────────────
+   FULLSCREEN VIDEO SECTION
+   ───────────────────────────────────────────── */
+const VideoFullscreen = () => {
+  const baseImages = [
+    "/blogs_1.png",
+    "/blogs_2.png",
+    "/blogs_3.png",
+    "/blogs_4.png",
+    "/blogs_5.png",
+  ];
+  // Duplicate: CSS animation moves -50% = exactly one set, seamless loop
+  const images = [...baseImages, ...baseImages];
+
+  return (
     <motion.section
-      className="relative w-full h-[40vh] md:h-[60vh] overflow-hidden bg-black flex items-center"
+      className="relative w-full h-[45vh] md:h-[65vh] overflow-hidden bg-[#1C1C1C]"
       initial={{ opacity: 0 }}
-      animate={visible ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 1, delay: 0.5 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1, delay: 0.2 }}
     >
-      <motion.div
-        className="flex h-full"
-        animate={{
-          x: [0, "-100%"]
-        }}
-        transition={{
-          duration: 30,
-          ease: "linear",
-          repeat: Infinity,
-        }}
-        style={{ width: `${images.length * 100}%` }}
+      {/* ── Scrolling strip (pure CSS for reliability) ── */}
+      <div
+        className="marquee-track flex h-full"
+        style={{ width: "max-content" }}
       >
         {images.map((src, idx) => (
-          <div key={idx} className="relative h-full w-[85vw] md:w-[60vw] flex-shrink-0 border-x border-white/10 group overflow-hidden">
+          <div
+            key={idx}
+            className="relative h-full w-[88vw] sm:w-[70vw] md:w-[55vw] flex-shrink-0 group overflow-hidden mx-[3px]"
+          >
             <Image
               src={src}
-              alt={`Landing View ${idx + 1}`}
+              alt={`View ${(idx % baseImages.length) + 1}`}
               fill
-              className="object-cover transition-transform duration-[3000ms] group-hover:scale-105"
-              priority={idx < 2}
+              sizes="(max-width: 640px) 88vw, (max-width: 1024px) 70vw, 55vw"
+              className="object-cover"
+              priority={idx < 3}
             />
-            {/* Added sharp border overlay */}
-            <div className="absolute inset-4 border border-white/20 pointer-events-none z-10" />
-            <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-700" />
+            {/* Outer border */}
+            <div className="absolute inset-0 border-2 border-white/25 pointer-events-none z-10" />
+            {/* Inner teal frame */}
+            <div className="absolute inset-[10px] border border-teal/30 pointer-events-none z-10 group-hover:border-teal/65 transition-colors duration-700" />
+            {/* Bottom teal sweep accent on hover */}
+            <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-teal/70 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left z-20" />
+            {/* Subtle dark overlay */}
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700" />
           </div>
         ))}
-      </motion.div>
+      </div>
 
-      {/* Overlay to blend with adjacent sections */}
-      <div className="absolute inset-0 bg-black/10 pointer-events-none" />
-      <div className="absolute inset-x-0 top-0 h-16 md:h-24 bg-gradient-to-b from-[#1C1C1C] to-transparent pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-16 md:h-24 bg-gradient-to-t from-[#1C1C1C] to-transparent pointer-events-none" />
+      {/* ── Left side teal border ── */}
+      <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-teal/50 z-30 pointer-events-none" />
+      {/* ── Right side teal border ── */}
+      <div className="absolute right-0 top-0 bottom-0 w-[3px] bg-teal/50 z-30 pointer-events-none" />
+
+      {/* Top + bottom fade into site background */}
+      <div className="absolute inset-x-0 top-0 h-14 md:h-20 bg-gradient-to-b from-[#1C1C1C] to-transparent pointer-events-none z-20" />
+      <div className="absolute inset-x-0 bottom-0 h-14 md:h-20 bg-gradient-to-t from-[#1C1C1C] to-transparent pointer-events-none z-20" />
     </motion.section>
   );
 };
@@ -406,15 +551,11 @@ export default function Home() {
         {loading && <Loader key="loader" onComplete={handleLoaderComplete} />}
       </AnimatePresence>
 
-      {/* When loading is false and showMain is true, the rest of the site is displayed instantly */}
       <Navbar visible={showMain} />
-
-      {/* Hero Section - Changed from fixed to relative to prevent overlap issues on mobile */}
       <Hero visible={showMain} />
-
-      {/* Content that scrolls after the Hero */}
       <div className="relative z-10 bg-[#1C1C1C]">
-        <VideoFullscreen visible={showMain} />
+        <WhoWeServe />
+        <VideoFullscreen />
         <Footer />
       </div>
     </main>

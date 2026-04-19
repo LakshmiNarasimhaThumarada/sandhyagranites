@@ -91,3 +91,14 @@ body {
   background: linear-gradient(180deg, transparent, rgba(58, 172, 176, 0.08), transparent);
   transform-origin: top;
 }
+
+/* ── Infinite horizontal marquee scroll ── */
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marqueeScroll 35s linear infinite;
+  will-change: transform;
+}
