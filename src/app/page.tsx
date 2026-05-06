@@ -275,6 +275,9 @@ const Hero = ({ visible }: { visible: boolean }) => {
                   src={img.src}
                   alt={img.alt}
                   fill
+                  // Tell the browser the actual display size so it requests an appropriately
+                  // sized AVIF/WebP instead of the full 4 MB PNG
+                  sizes="(max-width: 640px) 88vw, (max-width: 1024px) 45vw, 600px"
                   className="object-cover transition-transform duration-[2000ms] group-hover:scale-105 border border-white/20"
                 />
                 {/* Lighter overlay to highlight more */}
@@ -499,7 +502,9 @@ const VideoFullscreen = () => {
               fill
               sizes="(max-width: 640px) 88vw, (max-width: 1024px) 70vw, 55vw"
               className="object-cover"
-              priority={idx < 3}
+              // Only the very first visible image is above-the-fold;
+              // marking all 3 as priority wastes bandwidth
+              priority={idx === 0}
             />
             {/* Outer border */}
             <div className="absolute inset-0 border-2 border-white/25 pointer-events-none z-10" />

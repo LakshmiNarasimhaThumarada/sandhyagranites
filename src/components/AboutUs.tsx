@@ -300,7 +300,7 @@ export default function AboutUs() {
                 className={`absolute inset-0 transition-opacity duration-1000 ${activeIndex === index ? "opacity-100 z-10" : "opacity-0 z-0"
                   }`}
               >
-                <Image src={app.image} alt={app.name} fill sizes="100vw" className="object-cover object-center transition-transform duration-10000 group-hover:scale-105" />
+                <Image src={app.image} alt={app.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-center transition-transform duration-10000 group-hover:scale-105" />
 
                 <div className="absolute bottom-6 sm:bottom-10 left-6 sm:left-10 z-20">
                   <span className="font-raleway text-sm sm:text-lg uppercase tracking-[0.2em] text-white bg-[#1C1C1C]/60 backdrop-blur-md border border-white/10 px-5 py-2.5 rounded-none">

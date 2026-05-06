@@ -97,11 +97,11 @@ export default function GoogleTranslate() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Cheap: inject CSS fix + read cookie — no network, no JS parse cost
     injectGlobalStyle();
     setActiveLang(getActiveLang());
-    if (!document.getElementById("google-translate-script")) {
-      loadTranslateScript();
-    }
+    // Do NOT load the translate script eagerly — it locks the main thread.
+    // It is loaded lazily on first button click (see handleToggle below).
   }, [pathname]);
 
   // Close on outside click
@@ -117,6 +117,14 @@ export default function GoogleTranslate() {
 
   const current = LANGUAGES.find((l) => l.code === activeLang) ?? LANGUAGES[0];
 
+  // Lazy-load the translate script on first interaction, then toggle dropdown
+  const handleToggle = () => {
+    if (!scriptLoaded && !document.getElementById("google-translate-script")) {
+      loadTranslateScript();
+    }
+    setOpen((v) => !v);
+  };
+
   return (
     <>
       {/* Hidden Google Translate element (required for the cookie approach) */}
@@ -126,7 +134,7 @@ export default function GoogleTranslate() {
       <div ref={dropdownRef} style={{ position: "relative", display: "inline-flex", alignItems: "center" }}>
         {/* Trigger button */}
         <button
-          onClick={() => setOpen((v) => !v)}
+          onClick={handleToggle}
           aria-label="Select language"
           style={{
             display: "inline-flex",

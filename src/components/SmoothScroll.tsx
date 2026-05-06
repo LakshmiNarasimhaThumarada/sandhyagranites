@@ -43,7 +43,8 @@ export default function SmoothScroll({
     };
 
     document.addEventListener("click", handleAnchorClick);
-    const resizeObserver = new ResizeObserver(() => lenis.resize());
+    // Wrap in rAF to avoid triggering a forced synchronous layout reflow
+    const resizeObserver = new ResizeObserver(() => requestAnimationFrame(() => lenis.resize()));
     resizeObserver.observe(document.body);
 
     return () => {
