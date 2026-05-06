@@ -102,3 +102,22 @@ body {
   animation: marqueeScroll 35s linear infinite;
   will-change: transform;
 }
+
+/* ─── Google Translate UI cleanup ─── */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-te-menu-value span:nth-child(2),
+.goog-te-menu-value img,
+.goog-te-menu-frame.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+.goog-te-gadget-icon {
+  display: none !important;
+}

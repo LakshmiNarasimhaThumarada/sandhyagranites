@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import GoogleTranslate from "./GoogleTranslate";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -76,18 +77,24 @@ export default function Navbar() {
           >
             Contact Us
           </Link>
+          <div className="ml-2">
+            <GoogleTranslate />
+          </div>
         </div>
 
-        {/* Mobile burger */}
-        <button
-          className="lg:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          <span className={`block w-5 sm:w-6 h-[2px] bg-white transition-transform duration-300 ${mobileOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
-          <span className={`block w-5 sm:w-6 h-[2px] bg-white transition-opacity duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-5 sm:w-6 h-[2px] bg-white transition-transform duration-300 ${mobileOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
-        </button>
+        {/* Mobile menu toggle + Translator */}
+        <div className="lg:hidden flex items-center gap-3">
+          <GoogleTranslate />
+          <button
+            className="flex flex-col gap-1.5 p-2"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`block w-5 sm:w-6 h-[2px] bg-white transition-transform duration-300 ${mobileOpen ? "rotate-45 translate-y-[7px]" : ""}`} />
+            <span className={`block w-5 sm:w-6 h-[2px] bg-white transition-opacity duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-5 sm:w-6 h-[2px] bg-white transition-transform duration-300 ${mobileOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
